@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'home/about' => 'homes#about'
   
-  resources :books, only: [:new, :create, :index, :show]
-end
+  resources :books, only: [:new, :create, :index, :show, :destroy]
+  resources :users, only: [:index, :show, :edit] #devise とは関係のない部分を記述する
+end 

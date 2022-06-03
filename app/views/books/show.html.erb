@@ -7,6 +7,15 @@
       </td>
       <td><%= @book.title %></td>
       <td><%= @book.body %></td>
+      
+      <% if @book.user == current_user %> <!--current_userの_!-->
+      <td>
+      <!--%= link_to "Edit",-->
+      </td>
+      <td>
+      <%= link_to "Destroy", book_path(@book), method: :delete %>
+      <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
