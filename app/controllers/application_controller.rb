@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, except: [:top] #ログインしていない状態でトップページ以外のアクセスされた場合は、ログイン画面へリダイレクトするように設定
   #deviseの記述はここに
   before_action :configure_permitted_parameters, if: :devise_controller? #ストトングパラメーター
   
