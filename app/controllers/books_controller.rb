@@ -10,7 +10,8 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
-    @book = Book.new #投稿フォームのため空のカラムが必要
+    @book_new = Book.new #投稿フォームのため空のカラムが必要
+
   end
   
   def new
