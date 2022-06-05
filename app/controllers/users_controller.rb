@@ -24,6 +24,7 @@ class UsersController < ApplicationController
       render "edit" #失敗
     end
   end
+  
 
   private
 
