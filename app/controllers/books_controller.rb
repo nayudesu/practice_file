@@ -6,6 +6,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new #空のカラムを用意する（投稿フォームの部分てんぷれーと）
+    @comment = Comment.new #コメントの空のカラム
   end
 
   def index
