@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
     #いいねした人のuser_idが自動でカラムに保存される
     favorite.save
     #redirect_to request.referer #request.referer前の画面に遷移する =非同期のため削除
-    render 'favorite'
   end 
   
   def destroy
@@ -14,6 +13,5 @@ class FavoritesController < ApplicationController
     #find_byは検索バーに表示されないidを探す (いいねのidなど)
     favorite.destroy
     #redirect_to request.referer #request.referer前の画面に遷移する =非同期のため削除
-    render 'favorite'
   end
 end
