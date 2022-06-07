@@ -25,32 +25,10 @@
         </tr>
       </table>
       
-      <div>
-        <tbody>
-        <% @book.comments.each do |comment| %>
-        <tr>
-          <td>
-          <%= link_to user_path(comment.user) do %> <!--userのshowページへ-->
-            <%= image_tag comment.user.get_profile_image, size: "100x100" %><br>
-            <%= comment.user.name %>
-          <% end %>
-          </td>
-          <td><%= comment.user.name %></td>
-          <td><%= comment.comment %></td>
-          <td>
-          <% if comment.user == current_user %>
-          <%= link_to 'Destroy', book_comments_path(comment.book,comment), method: :delete %>
-          <% end %>
-          <% end %>
-          </td>
-        <%= form_with model:[@book, @comment] do |f| %> 
-        <!--どのbookか/ コメント投稿機能の空のカラムが欲しい-->
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
-        <%= f.submit %>
-        <% end %>
-        </tr>
-        </tbody>
+      <div id='comments'>
+        <%= render 'comments/comment', book: @book %>
       </div>
+        <%= render 'comments/form', book: @book, comment: @comment %>
     </div>
   </div>
 </div>

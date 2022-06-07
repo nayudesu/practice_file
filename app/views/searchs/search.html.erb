@@ -1,0 +1,10 @@
+<% if @range == "User" %>
+
+  <h2>Users serach for "<%= @word %>"</h2>
+  <%= render 'users/index', users: @users %> 
+  <!--@usersはsearchコントローラーに記述-->
+<% else %>
+  <h2>Books serach for "<%= @word %>"</h2>
+  <%= render 'books/index', books: @books %>
+   <!--@booksはsearchコントローラーに記述-->
+<% end %>

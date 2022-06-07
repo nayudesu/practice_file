@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index,:show,:edit,:update] do 
     resource :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers' #
+    get 'followings' => 'relationships#followings', as: 'followings' #名前付ルートにすることでパスの記述を簡単にする
+    get 'followers' => 'relationships#followers', as: 'followers' #ビュー
   end 
+  
+  get 'search' => "searchs#search" #Searchesコントローラーのsearchアクションが実行されるように定義
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end 

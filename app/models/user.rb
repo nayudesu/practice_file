@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # foreign_key（FK）には、@user.中間テーブルとした際に「@user.idがfollowing_idなのかfollower_idなのか」を指定します。
   has_many :relationships, class_name: 'Relationship', foreign_key: :following_id, dependent: :destroy
   #フォローする側からのhas_manyか不明のためforeign_keyで指定(フォローする側)
-  has_many :followings, through: :relationships, source: :follower
+  has_many :followings, through: :relationships, source: :follower #sorce=とってくるためのもの
   #あるユーザーがフォローしている人全員持ってくる=あるユーザからフォローされている人をとってくる/followings(任意)
 
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :follower_id, dependent: :destroy
@@ -27,7 +27,7 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
-  
+  #モデル内のメソッドはインスタンスメソッド
   #画像
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
@@ -36,17 +36,32 @@ class User < ApplicationRecord
   #フォロー機能(コントローラやビューで使用するため)
   # ユーザーをフォローする
   def follow(user)
-    reverse_of_relationships.create(following_id: user.id) #
+    relationships.create(follower_id: user.id) 
   end 
   
   # ユーザーのフォローを外す
   def unfollow(user)
-    reverse_of_relationships.find_by(following_id: user.id).destroy
+    relationships.find_by(follower_id: user.id).destroy
   end 
   
   # フォローしていればtrueを返す
   def following?(user)
-    followers.include?(user)
+    followings.include?(user)
   end
   
+  #検索機能
+  def self.looks(search, word) #self=
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+    #whereメソッドを使いデータベースから該当データを取得
+  end
 end

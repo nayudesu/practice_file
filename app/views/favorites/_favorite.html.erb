@@ -1,12 +1,12 @@
 <% if book.favorited_by?(current_user) %>
- <%= link_to book_favorites_path(book), method: :delete do %>
+ <%= link_to book_favorites_path(book), method: :delete, remote: true do %> <!--remote: trueでjavaScriptのリクエストがfavoritesコントローラに送信-->
  <i class="fas fa-heart" style="color: red;"></i> 
  <!--style="color: red;"で色を指定する-->
  <%= book.favorites.count %>
   <% end %>
 
  <% else %>
- <%= link_to book_favorites_path(book), method: :post do %>
+ <%= link_to book_favorites_path(book), method: :post, remote: true do %>
  <i class="fas fa-heart"></i>
  <%= book.favorites.count %>
  <% end %>
