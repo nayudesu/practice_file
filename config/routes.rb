@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy] #いいね機能
-    resource :comments, only: [:create, :destroy] #コメント
+    resources :comments, only: [:create, :destroy] #コメント
   end 
   
   

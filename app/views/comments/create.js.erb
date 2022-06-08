@@ -1,3 +1,3 @@
-$("book_comments").html("<%= j(render "comments/comment", book: @book) %>");
+$("#book_comments").html("<%= j(render "comments/comment", book: @book) %>");
 $("#comments_counts_<%= @book.id %>").html("<%= j(render "comments/count", book: @book) %>");
-$("#comment-textarea").val("");
+$("textarea").val("");
