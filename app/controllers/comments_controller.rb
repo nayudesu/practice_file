@@ -4,12 +4,14 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params) #comment_paramsはストロングパラメーター
     @comment.book_id = @book.id
     @comment.save
-    redirect_to request.referer #request.referer前の画面に遷移する
+    #redirect_to request.referer #request.referer前の画面に遷移する
   end 
   
   def destroy
-    Comment.find_by(params[:id]).destroy
-    redirect_to request.referer #request.referer前の画面に遷移する
+    @book = Book.find(params[:book_id]) #(params[:id])ではダメなのか？
+    @comment = Comment.find_by(params[:id])
+    @comment.destroy
+    #redirect_to request.referer #request.referer前の画面に遷移する
   end 
   
   private

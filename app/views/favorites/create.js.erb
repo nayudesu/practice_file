@@ -1,1 +1,2 @@
 $("#book_<%= @book.id %>").html("<%= j(render "favorites/favorite", book: @book) %>");
+<!--#book_はidにつけた名前/%= @book.id %で呼び出したbook.idにいいねをする-->
