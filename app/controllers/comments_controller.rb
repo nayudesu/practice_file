@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   
   def destroy
     @book = Book.find(params[:book_id]) #(params[:id])ではダメなのか？
-    Comment.find(params[:id]).destroy
+    Comment.find(params[:id]).destroy #！！コメントの主キーを呼び出すためfind！（複数の情報を呼び出す時にはfind_by）
     #redirect_to request.referer #request.referer前の画面に遷移する
   end 
   

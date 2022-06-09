@@ -1,4 +1,5 @@
         <%= form_with model:[book, comment], local: false do |f| %> 
+        <!--非同期にづるためにはlocal: falseを記述-->
         <!--どのbookか/ コメント投稿機能の空のカラムが欲しい-->
         <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
         <%= f.submit %>

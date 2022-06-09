@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy] #いいね機能
     resources :comments, only: [:create, :destroy] #コメント
+    #！！コメントのidを取得する必要がある（削除の時）ため、resourcesでコメントのidを取得できるようにする
   end 
   
   
