@@ -19,25 +19,7 @@
           <td><%= @book.body %></td>
           <td id="book_<%= @book.id %>"><%= render 'favorites/favorite', book: @book %></td>
           <td id="comments_counts_<%= @book.id %>"><%= render "comments/count", book: @book %></td>
-          <td>
-            <div id="star-rate<%= @book.id%>">
-             <script>
-              $('#star-rate<%= @book.id %>').empty();
-              $('#star-rate<%= @book.id%>').raty({
-                 size      : 36,
-                 starOff   : '<%= asset_path('star-off.png') %>',
-                 starOn    : '<%= asset_path('star-on.png') %>',
-                 half      : false,
-                 readOnly: true,
-                 score: <%= @book.star %>,
-               });
-             </script>
-            </div>
-      
-      <!--readOnly: true,=読み取り専用、編集できないようにする-->
-      <!--score: %= @book.star %=@book= Book.find(params[:id])のstarカラムを取り出す-->
-
-          </td>
+          <td id="star-rate<%= @book.id%>"><%= render 'star', book: @book %></td>
           
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
