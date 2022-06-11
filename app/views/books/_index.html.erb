@@ -20,6 +20,7 @@
         <!--部分テンプレートにした箇所(部分的に更新したい箇所)-->
         <td id="comments_counts_<%= book.id %>"><%= render "comments/count", book: book %></td>
         <td id="star-rate<%= book.id%>"><%= render 'books/star', book: book %></td>
+        <td><%= l book.created_at %></td> <!--lメソッドを使って日本時間表示-->
 
       </tr>
     <% end %>

@@ -10,7 +10,16 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    if params[:latest] #params[:latest]=ビューからの指示を受けるための名前を定義。ビューのlatestと繋がる。
+      @books = Book.latest #Book.latest=モデルで記述したlatestと繋がる
+    elsif params[:old]
+      @books = Book.old
+    elsif params[:star_count]
+      @books = Book.star_count
+    else
+      @books = Book.all
+    end 
+    
     @book_new = Book.new #投稿フォームのため空のカラムが必要
   end
   
